@@ -20,10 +20,9 @@ public class NumbersActivity extends AppCompatActivity {
         for (int n = 0; n < word.length; words.add(word[n++]));
 
         LinearLayout rootView = (LinearLayout) findViewById(R.id.rootView);
-        int n = 0;
-        while (n < words.size()) {
+        for (int n = 0; n < words.size(); n++) {
             TextView tv = new TextView(this);
-            tv.setText(words.get(n++));
+            tv.setText(words.get(n));
             rootView.addView(tv);
         }
     }
