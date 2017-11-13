@@ -30,15 +30,49 @@ public class MainActivity extends AppCompatActivity {
         // Set the content of the activity to use the activity_main.xml layout file
         setContentView(R.layout.activity_main);
         // Find the View that shows the numbers category
-        TextView numbers = (TextView) findViewById(R.id.numbers);
+        TextView text;
 
-// Set a click listener on that View
-        numbers.setOnClickListener(new View.OnClickListener() {
+        text = (TextView) findViewById(R.id.numbers);
+        // Set a click listener on that View
+        text.setOnClickListener(new View.OnClickListener() {
             // The code in this method will be executed when the numbers View is clicked on.
             @Override
             public void onClick(View view) {
-                Intent numbersIntent = new Intent(MainActivity.this, NumbersActivity.class);
-                startActivity(numbersIntent);
+                Intent intendant = new Intent(MainActivity.this, NumbersActivity.class);
+                startActivity(intendant);
+            }
+        });
+
+        text = (TextView) findViewById(R.id.colors);
+        // Set a click listener on that View
+        text.setOnClickListener(new View.OnClickListener() {
+            // The code in this method will be executed when the numbers View is clicked on.
+            @Override
+            public void onClick(View view) {
+                Intent intendant = new Intent(MainActivity.this, ColorsActivity.class);
+                startActivity(intendant);
+            }
+        });
+
+        text = (TextView) findViewById(R.id.family);
+        // Set a click listener on that View
+        text.setOnClickListener(new View.OnClickListener() {
+            // The code in this method will be executed when the numbers View is clicked on.
+            @Override
+            public void onClick(View view) {
+                Intent intendant = new Intent(MainActivity.this, FamilyActivity.class);
+                startActivity(intendant);
+            }
+        });
+
+        text = (TextView) findViewById(R.id.phrases);
+        // Set a click listener on that View
+        text.setOnClickListener(new View.OnClickListener() {
+            // The code in this method will be executed when the numbers View is clicked on.
+            @Override
+            public void onClick(View view) {
+                Intent intendant = new Intent(MainActivity.this, PhrasesActivity.class);
+                startActivity(intendant);
             }
         });
     }
