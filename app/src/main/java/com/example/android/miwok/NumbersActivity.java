@@ -15,11 +15,25 @@ public class NumbersActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_numbers);
 
-        String[] word = new String[]{"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"};
-        ArrayList<String> words = new ArrayList<String>(word.length);
-        for (int n = 0; n < word.length; words.add(word[n++]));
+        String[][] word = new String[][]{
+            {"one", "lutti"},
+            {"two", "otiiko"},
+            {"three", "tolookosu"},
+            {"four", "oyyisa"},
+            {"five", "massokka"},
+            {"six", "temmokka"},
+            {"seven", "kenekaku"},
+            {"eight", "kawinta"},
+            {"nine", "wo’e"},
+            {"ten", "na’aacha"}
+        };
 
-        ArrayAdapter<String> itemsAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, words);
+        ArrayList<Word> words = new ArrayList<Word>(word.length);
+        for (String[] w : word) {
+            words.add(new Word(w[0], w[1]));
+        }
+
+        WordAdapter itemsAdapter = new WordAdapter(this, words);
 
         ListView listView = (ListView) findViewById(R.id.list);
 
