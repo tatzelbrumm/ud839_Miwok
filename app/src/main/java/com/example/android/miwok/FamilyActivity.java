@@ -1,10 +1,6 @@
 package com.example.android.miwok;
 
-import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ListView;
 
 import java.util.ArrayList;
 
@@ -60,22 +56,6 @@ public class FamilyActivity extends VocabularyActivity {
             words.add(new Word(word[n][0], word[n][1], soundId[n], imgId[n]));
         }
 
-        WordAdapter itemsAdapter = new WordAdapter(this, words, R.color.category_family);
-
-        ListView listView = (ListView) findViewById(R.id.list);
-
-        listView.setAdapter(itemsAdapter);
-        // anonymous OnItemClick() method override
-        listView.setOnItemClickListener(
-                new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        releaseMediaPlayer();
-                        mMediaPlayer = MediaPlayer.create(FamilyActivity.this, words.get(position).getSoundResourceId());
-                        mMediaPlayer.start();
-                        mMediaPlayer.setOnCompletionListener(mCompletionListener);
-                    }
-                }
-        );
+        fillList(this, words, R.color.category_family);
     }
 }

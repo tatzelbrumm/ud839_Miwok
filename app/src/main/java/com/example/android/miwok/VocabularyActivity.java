@@ -2,6 +2,11 @@ package com.example.android.miwok;
 
 import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
+
+import java.util.ArrayList;
 
 /**
  * Class VocabularyActivity contains common code for the different vocabularies, to save copying
@@ -25,6 +30,31 @@ public class VocabularyActivity extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
         releaseMediaPlayer();
+    }
+
+    /**
+     * Fill vocabulary list
+     * @param context       android.app.Activity calling
+     * @param words         ArrayList<Word> with words, translations, audio, and optional images
+     * @param colorResId    text background color resource ID for screens
+     */
+    protected void fillList(final android.app.Activity context, final ArrayList<Word> words, int colorResId) {
+        WordAdapter itemsAdapter = new WordAdapter(context, words, colorResId);
+
+        ListView listView = (ListView) findViewById(R.id.list);
+
+        listView.setAdapter(itemsAdapter);
+        // anonymous OnItemClick() method override
+        listView.setOnItemClickListener(
+                new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        releaseMediaPlayer();
+                        mMediaPlayer = MediaPlayer.create(context, words.get(position).getSoundResourceId());
+                        mMediaPlayer.start();
+                        mMediaPlayer.setOnCompletionListener(mCompletionListener);
+                    }
+                });
     }
 
     /**
