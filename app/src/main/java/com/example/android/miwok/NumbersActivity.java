@@ -54,7 +54,7 @@ public class NumbersActivity extends AppCompatActivity {
                 R.drawable.number_ten
         };
 
-        ArrayList<Word> words = new ArrayList<Word>(word.length);
+        final ArrayList<Word> words = new ArrayList<Word>(word.length);
         for (int n = 0; n < word.length;  n++) {
             words.add(new Word(word[n][0], word[n][1], soundId[n], imgId[n]));
         }
@@ -68,7 +68,7 @@ public class NumbersActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Log.i("numbers", "clicking position "+ position + ", id " + id);
-                mMediaPlayer = MediaPlayer.create(NumbersActivity.this, R.raw.phrase_lets_go);
+                mMediaPlayer = MediaPlayer.create(NumbersActivity.this, words.get(position).getSoundResourceId());
                 mMediaPlayer.start();
             }
         });
