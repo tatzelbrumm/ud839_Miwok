@@ -24,10 +24,22 @@ public class NumbersActivity extends AppCompatActivity {
             {"nine", "wo’e"},
             {"ten", "na’aacha"}
         };
+        int[] imgId = new int[] {
+                R.drawable.number_one,
+                R.drawable.number_two,
+                R.drawable.number_three,
+                R.drawable.number_four,
+                R.drawable.number_five,
+                R.drawable.number_six,
+                R.drawable.number_seven,
+                R.drawable.number_eight,
+                R.drawable.number_nine,
+                R.drawable.number_ten
+        };
 
         ArrayList<Word> words = new ArrayList<Word>(word.length);
-        for (String[] w : word) {
-            words.add(new Word(w[0], w[1]));
+        for (int n = 0; n < word.length;  n++) {
+            words.add(new Word(word[n][0], word[n][1], imgId[n]));
         }
 
         WordAdapter itemsAdapter = new WordAdapter(this, words);

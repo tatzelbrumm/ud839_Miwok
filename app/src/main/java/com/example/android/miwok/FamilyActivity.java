@@ -24,10 +24,22 @@ public class FamilyActivity extends AppCompatActivity {
             {"grandmother ", "ama"},
             {"grandfather", "paapa"}
         };
+        int[] imgId = new int[] {
+                R.drawable.family_father,
+                R.drawable.family_mother,
+                R.drawable.family_son,
+                R.drawable.family_daughter,
+                R.drawable.family_older_brother,
+                R.drawable.family_younger_brother,
+                R.drawable.family_older_sister,
+                R.drawable.family_younger_sister,
+                R.drawable.family_grandmother,
+                R.drawable.family_grandfather
+        };
 
         ArrayList<Word> words = new ArrayList<Word>(word.length);
-        for (String[] w : word) {
-            words.add(new Word(w[0], w[1]));
+        for (int n = 0; n < word.length;  n++) {
+            words.add(new Word(word[n][0], word[n][1], imgId[n]));
         }
 
         WordAdapter itemsAdapter = new WordAdapter(this, words);

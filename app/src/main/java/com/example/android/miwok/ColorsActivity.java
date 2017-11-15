@@ -22,10 +22,20 @@ public class ColorsActivity extends AppCompatActivity {
             {"black", "kululli"},
             {"white", "kelelli"}
         };
+        int[] imgId = new int[] {
+                R.drawable.color_red,
+                R.drawable.color_mustard_yellow,
+                R.drawable.color_dusty_yellow,
+                R.drawable.color_green,
+                R.drawable.color_brown,
+                R.drawable.color_gray,
+                R.drawable.color_black,
+                R.drawable.color_white
+        };
 
         ArrayList<Word> words = new ArrayList<Word>(word.length);
-        for (String[] w : word) {
-            words.add(new Word(w[0], w[1]));
+        for (int n = 0; n < word.length;  n++) {
+            words.add(new Word(word[n][0], word[n][1], imgId[n]));
         }
 
         WordAdapter itemsAdapter = new WordAdapter(this, words);
