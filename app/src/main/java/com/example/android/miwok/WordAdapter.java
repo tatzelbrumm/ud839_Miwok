@@ -1,8 +1,10 @@
 package com.example.android.miwok;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,13 +20,26 @@ import java.util.ArrayList;
  * that can handle an optional image and two lines of text
  */
 public class WordAdapter extends ArrayAdapter<Word> {
+    /** background color for list item text */
+    private int mColorResourceId;
+    /**
+     * Constructor
+     * @param context   current context to inflate layout file
+     * @param words     List of Word objects to display
+     * @param colorId   background color resource ID for list item text
+     */
+    public WordAdapter(Activity context, ArrayList<Word> words, int colorId)
+    {
+        super(context, 0, words);
+        mColorResourceId = colorId;
+    }
     /**
      * Constructor
      * @param context   current context to inflate layout file
      * @param words     List of Word objects to display
      */
     public WordAdapter(Activity context, ArrayList<Word> words) {
-        super(context, 0, words);
+        this(context, words, R.color.primary_color);
     }
     /**
      * {@inheritDoc}
@@ -46,6 +61,9 @@ public class WordAdapter extends ArrayAdapter<Word> {
             listItemView = LayoutInflater.from(getContext()).inflate(
                     R.layout.list_item, parent, false);
         }
+        // set the background color of the text field
+        int color = ContextCompat.getColor(getContext(), mColorResourceId);
+        listItemView.findViewById(R.id.wordpair).setBackgroundColor(color);
         // Get the Word to display and fill the Views in the listItemView
         Word wordUp = getItem(position);
         ((TextView) listItemView.findViewById(R.id.line_1)).setText(wordUp.getMiwok());
