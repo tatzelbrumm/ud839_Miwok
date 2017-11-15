@@ -25,19 +25,23 @@
 
         <TextView
             android:id="@+id/line_1"
-            style="@style/CategoryStyle"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="bottom"
+            android:textAppearance="?android:textAppearanceMedium"
+            android:textColor="@android:color/white"
             android:textStyle="bold"
             tools:text="den firsten zeilen"/>
 
         <TextView
             android:id="@+id/line_2"
-            style="@style/CategoryStyle"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="top"
+            android:textAppearance="?android:textAppearanceMedium"
+            android:textColor="@android:color/white"
             android:textStyle="normal"
             tools:text="den zweiten zeilen"/>
     </LinearLayout>
