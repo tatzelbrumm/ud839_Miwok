@@ -34,14 +34,6 @@ public class WordAdapter extends ArrayAdapter<Word> {
         mColorResourceId = colorId;
     }
     /**
-     * Constructor
-     * @param context   current context to inflate layout file
-     * @param words     List of Word objects to display
-     */
-    public WordAdapter(Activity context, ArrayList<Word> words) {
-        this(context, words, R.color.primary_color);
-    }
-    /**
      * {@inheritDoc}
      *
      * Provides a view for an AdapterView (ListView, GridView, etc.)

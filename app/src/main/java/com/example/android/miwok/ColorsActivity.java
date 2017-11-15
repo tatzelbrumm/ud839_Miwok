@@ -38,7 +38,7 @@ public class ColorsActivity extends AppCompatActivity {
             words.add(new Word(word[n][0], word[n][1], imgId[n]));
         }
 
-        WordAdapter itemsAdapter = new WordAdapter(this, words);
+        WordAdapter itemsAdapter = new WordAdapter(this, words, R.color.category_colors);
 
         ListView listView = (ListView) findViewById(R.id.list);
 

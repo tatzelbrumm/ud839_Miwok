@@ -42,7 +42,7 @@ public class FamilyActivity extends AppCompatActivity {
             words.add(new Word(word[n][0], word[n][1], imgId[n]));
         }
 
-        WordAdapter itemsAdapter = new WordAdapter(this, words);
+        WordAdapter itemsAdapter = new WordAdapter(this, words, R.color.category_family);
 
         ListView listView = (ListView) findViewById(R.id.list);
 
