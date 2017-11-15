@@ -19,6 +19,11 @@ public class NumbersActivity extends AppCompatActivity {
             releaseMediaPlayer();
         }
     };
+
+    /**
+     * onCreate sets up the dictionary list entries
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,6 +89,16 @@ public class NumbersActivity extends AppCompatActivity {
             }
         );
     }
+
+    /**
+     * onStop, stop playing sound by releasing any existing media player
+     */
+    @Override
+    protected void onStop() {
+        super.onStop();
+        releaseMediaPlayer();
+    }
+
     /**
      * Clean up the media player by releasing its resources.
      */
