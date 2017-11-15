@@ -12,49 +12,19 @@ public class NumbersActivity extends VocabularyActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.word_list);
 
-        String[][] word = new String[][]{
-            {"one", "lutti"},
-            {"two", "otiiko"},
-            {"three", "tolookosu"},
-            {"four", "oyyisa"},
-            {"five", "massokka"},
-            {"six", "temmokka"},
-            {"seven", "kenekaku"},
-            {"eight", "kawinta"},
-            {"nine", "wo’e"},
-            {"ten", "na’aacha"}
-        };
-        int[] soundId = new int[] {
-                R.raw.number_one,
-                R.raw.number_two,
-                R.raw.number_three,
-                R.raw.number_four,
-                R.raw.number_five,
-                R.raw.number_six,
-                R.raw.number_seven,
-                R.raw.number_eight,
-                R.raw.number_nine,
-                R.raw.number_ten
-        };
-        int[] imgId = new int[] {
-                R.drawable.number_one,
-                R.drawable.number_two,
-                R.drawable.number_three,
-                R.drawable.number_four,
-                R.drawable.number_five,
-                R.drawable.number_six,
-                R.drawable.number_seven,
-                R.drawable.number_eight,
-                R.drawable.number_nine,
-                R.drawable.number_ten
-        };
         // It is ESSENTIAL that words be declared final, so that they can be used by OnItemClickListener
-        final ArrayList<Word> words = new ArrayList<Word>(word.length);
-        for (int n = 0; n < word.length;  n++) {
-            words.add(new Word(word[n][0], word[n][1], soundId[n], imgId[n]));
-        }
+        final ArrayList<Word> words = new ArrayList<Word>();
+        words.add(new Word("one", "lutti", R.raw.number_one, R.drawable.number_one));
+        words.add(new Word("two", "otiiko", R.raw.number_two, R.drawable.number_two));
+        words.add(new Word("three", "tolookosu", R.raw.number_three, R.drawable.number_three));
+        words.add(new Word("four", "oyyisa", R.raw.number_four, R.drawable.number_four));
+        words.add(new Word("five", "massokka", R.raw.number_five, R.drawable.number_five));
+        words.add(new Word("six", "temmokka", R.raw.number_six, R.drawable.number_six));
+        words.add(new Word("seven", "kenekaku", R.raw.number_seven, R.drawable.number_seven));
+        words.add(new Word("eight", "kawinta", R.raw.number_eight, R.drawable.number_eight));
+        words.add(new Word("nine", "wo’e", R.raw.number_nine, R.drawable.number_nine));
+        words.add(new Word("ten", "na’aacha", R.raw.number_ten, R.drawable.number_ten));
 
         fillList(this, words, R.color.category_numbers);
     }

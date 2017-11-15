@@ -39,6 +39,8 @@ public class VocabularyActivity extends AppCompatActivity {
      * @param colorResId    text background color resource ID for screens
      */
     protected void fillList(final android.app.Activity context, final ArrayList<Word> words, int colorResId) {
+        setContentView(R.layout.word_list);
+
         WordAdapter itemsAdapter = new WordAdapter(context, words, colorResId);
 
         ListView listView = (ListView) findViewById(R.id.list);
