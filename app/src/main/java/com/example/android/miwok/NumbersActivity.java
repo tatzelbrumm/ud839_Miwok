@@ -24,6 +24,18 @@ public class NumbersActivity extends AppCompatActivity {
             {"nine", "wo’e"},
             {"ten", "na’aacha"}
         };
+        int[] soundId = new int[] {
+                R.raw.number_one,
+                R.raw.number_two,
+                R.raw.number_three,
+                R.raw.number_four,
+                R.raw.number_five,
+                R.raw.number_six,
+                R.raw.number_seven,
+                R.raw.number_eight,
+                R.raw.number_nine,
+                R.raw.number_ten
+        };
         int[] imgId = new int[] {
                 R.drawable.number_one,
                 R.drawable.number_two,
@@ -39,7 +51,7 @@ public class NumbersActivity extends AppCompatActivity {
 
         ArrayList<Word> words = new ArrayList<Word>(word.length);
         for (int n = 0; n < word.length;  n++) {
-            words.add(new Word(word[n][0], word[n][1], imgId[n]));
+            words.add(new Word(word[n][0], word[n][1], soundId[n], imgId[n]));
         }
 
         WordAdapter itemsAdapter = new WordAdapter(this, words, R.color.category_numbers);

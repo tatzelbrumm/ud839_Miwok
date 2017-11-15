@@ -24,10 +24,22 @@ public class PhrasesActivity extends AppCompatActivity {
             {"Let’s go.", "yoowutis"},
             {"Come here.", "әnni'nem"}
         };
+        int[] soundId = new int[] {
+                R.raw.phrase_where_are_you_going,
+                R.raw.phrase_what_is_your_name,
+                R.raw.phrase_my_name_is,
+                R.raw.phrase_how_are_you_feeling,
+                R.raw.phrase_im_feeling_good,
+                R.raw.phrase_are_you_coming,
+                R.raw.phrase_yes_im_coming,
+                R.raw.phrase_im_coming,
+                R.raw.phrase_lets_go,
+                R.raw.phrase_come_here
+        };
 
-        ArrayList<Word> words = new ArrayList<Word>(word.length);
-        for (String[] w : word) {
-            words.add(new Word(w[0], w[1]));
+        final ArrayList<Word> words = new ArrayList<Word>(word.length);
+        for (int n = 0; n < word.length; n++) {
+            words.add(new Word(word[n][0], word[n][1], soundId[n]));
         }
 
         WordAdapter itemsAdapter = new WordAdapter(this, words, R.color.category_phrases);

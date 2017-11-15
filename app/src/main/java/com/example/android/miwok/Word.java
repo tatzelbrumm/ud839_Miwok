@@ -8,6 +8,8 @@ public class Word {
     private String mDefault;
     /** Word in Miwok language */
     private String mMiwok;
+    /** Sound resource ID */
+    private int mSoundResourceId;
     /** Image resource ID */
     private int mImageResourceId;
     /** uninitialized image resource ID */
@@ -16,24 +18,29 @@ public class Word {
      * Constructor
      * @param en    Word in default language
      * @param miwok Word in Miwok language
+     * @param soundID   sound resource ID
      * @param imageID   image resource ID
      */
-    public Word(String en, String miwok, int imageID)
+    public Word(String en, String miwok, int soundID, int imageID)
     {
         mDefault = en;
         mMiwok = miwok;
+        mSoundResourceId = soundID;
         mImageResourceId = imageID;
     }
     /**
      * Constructor
      * @param en    Word in default language
      * @param miwok Word in Miwok language
+     * @param soundID   sound resource ID
      */
-    public Word(String en, String miwok) {this(en, miwok, UNINITIALIZED_IMAGE_RESOURCE_ID);}
+    public Word(String en, String miwok, int soundID) {this(en, miwok, soundID, UNINITIALIZED_IMAGE_RESOURCE_ID);}
     /** get word in default language */
     public String getDefault() {return mDefault;}
     /** get word in Miwok language */
     public String getMiwok() {return mMiwok;}
+    /** get sound resource ID */
+    public int getSoundResourceId() {return mSoundResourceId;}
     /** get image resource ID */
     public int getImageResourceId() {return mImageResourceId;}
     /** check if image has been initialized */
