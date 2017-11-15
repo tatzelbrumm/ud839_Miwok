@@ -3,7 +3,6 @@ package com.example.android.miwok;
 import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -53,7 +52,7 @@ public class NumbersActivity extends AppCompatActivity {
                 R.drawable.number_nine,
                 R.drawable.number_ten
         };
-
+        // It is ESSENTIAL that words be declared final, so that they can be used by OnItemClickListener
         final ArrayList<Word> words = new ArrayList<Word>(word.length);
         for (int n = 0; n < word.length;  n++) {
             words.add(new Word(word[n][0], word[n][1], soundId[n], imgId[n]));
@@ -64,13 +63,15 @@ public class NumbersActivity extends AppCompatActivity {
         ListView listView = (ListView) findViewById(R.id.list);
 
         listView.setAdapter(itemsAdapter);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Log.i("numbers", "clicking position "+ position + ", id " + id);
-                mMediaPlayer = MediaPlayer.create(NumbersActivity.this, words.get(position).getSoundResourceId());
-                mMediaPlayer.start();
+        // anonymous OnItemClick() method override
+        listView.setOnItemClickListener(
+            new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    mMediaPlayer = MediaPlayer.create(NumbersActivity.this, words.get(position).getSoundResourceId());
+                    mMediaPlayer.start();
+                }
             }
-        });
+        );
     }
 }
