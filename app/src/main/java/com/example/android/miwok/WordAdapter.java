@@ -14,8 +14,9 @@ import java.util.ArrayList;
 
 /**
  * Created by cmaier on 14.11.17.
+ * A hand crafted ArrayAdapter for Word class
+ * that can handle an optional image and two lines of text
  */
-
 public class WordAdapter extends ArrayAdapter<Word> {
     /**
      * Constructor
@@ -49,7 +50,15 @@ public class WordAdapter extends ArrayAdapter<Word> {
         Word wordUp = getItem(position);
         ((TextView) listItemView.findViewById(R.id.line_1)).setText(wordUp.getMiwok());
         ((TextView) listItemView.findViewById(R.id.line_2)).setText(wordUp.getDefault());
-        ((ImageView) listItemView.findViewById(R.id.image_label)).setImageResource(wordUp.getImageResourceId());
+        ImageView img = (ImageView) listItemView.findViewById(R.id.image_label);
+        if (wordUp.hasImage()) {
+            img.setImageResource(wordUp.getImageResourceId());
+            img.setVisibility(View.VISIBLE);
+        }
+        else
+        {
+            img.setVisibility(View.GONE);
+        }
         return listItemView;
     }
 }

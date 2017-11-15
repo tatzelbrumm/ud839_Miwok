@@ -10,6 +10,8 @@ public class Word {
     private String mMiwok;
     /** Image resource ID */
     private int mImageResourceId;
+    /** uninitialized image resource ID */
+    private static final int UNINITIALIZED_IMAGE_RESOURCE_ID = R.mipmap.ic_launcher;
     /**
      * Constructor
      * @param en    Word in default language
@@ -27,11 +29,13 @@ public class Word {
      * @param en    Word in default language
      * @param miwok Word in Miwok language
      */
-    public Word(String en, String miwok) {this(en, miwok, R.mipmap.ic_launcher);}
+    public Word(String en, String miwok) {this(en, miwok, UNINITIALIZED_IMAGE_RESOURCE_ID);}
     /** get word in default language */
     public String getDefault() {return mDefault;}
     /** get word in Miwok language */
     public String getMiwok() {return mMiwok;}
     /** get image resource ID */
     public int getImageResourceId() {return mImageResourceId;}
+    /** check if image has been initialized */
+    public boolean hasImage() {return (UNINITIALIZED_IMAGE_RESOURCE_ID != mImageResourceId);}
 }
