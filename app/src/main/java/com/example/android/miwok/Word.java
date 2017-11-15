@@ -27,7 +27,7 @@ public class Word {
      * @param en    Word in default language
      * @param miwok Word in Miwok language
      */
-    public Word(String en, String miwok) {this(en, miwok, 0);}
+    public Word(String en, String miwok) {this(en, miwok, R.mipmap.ic_launcher);}
     /** get word in default language */
     public String getDefault() {return mDefault;}
     /** get word in Miwok language */
