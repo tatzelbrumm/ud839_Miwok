@@ -34,4 +34,7 @@
 
     <!-- Background color for the phrases category -->
     <color name="category_phrases">#16AFCA</color>
+
+    <!-- Color for non-selected menu items -->
+    <color name="menu_nonhighlight">#A8A19E</color>
 </resources>
