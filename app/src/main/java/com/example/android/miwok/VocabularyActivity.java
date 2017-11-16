@@ -1,5 +1,7 @@
 package com.example.android.miwok;
 
+import android.content.Context;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -15,11 +17,37 @@ import java.util.ArrayList;
 public class VocabularyActivity extends AppCompatActivity {
     /** media player instance */
     protected MediaPlayer mMediaPlayer;
+    /** audio manager instance */
+    protected AudioManager mAudioManager;
+
     /** onCompletionListener for media player */
     protected MediaPlayer.OnCompletionListener mCompletionListener = new MediaPlayer.OnCompletionListener() {
         @Override
         public void onCompletion(MediaPlayer mp) {
             releaseMediaPlayer();
+        }
+    };
+
+    /** OnAudioFocusChangeListener */
+    protected AudioManager.OnAudioFocusChangeListener audiatur = new AudioManager.OnAudioFocusChangeListener() {
+        public void onAudioFocusChange(int focus_change) {
+            switch (focus_change) {
+                case AudioManager.AUDIOFOCUS_LOSS:
+                    //mMediaPlayer.stop();
+                    releaseMediaPlayer();
+                    mAudioManager.abandonAudioFocus(audiatur);
+                    break;
+                case AudioManager.AUDIOFOCUS_LOSS_TRANSIENT:
+                case AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK:
+                    mMediaPlayer.pause();
+                    mMediaPlayer.seekTo(0);
+                    break;
+                case AudioManager.AUDIOFOCUS_GAIN:
+                case AudioManager.AUDIOFOCUS_GAIN_TRANSIENT:
+                    startAudio();
+                    break;
+                default:
+            }
         }
     };
 
@@ -30,6 +58,7 @@ public class VocabularyActivity extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
         releaseMediaPlayer();
+        mAudioManager.abandonAudioFocus(audiatur);
     }
 
     /**
@@ -40,6 +69,8 @@ public class VocabularyActivity extends AppCompatActivity {
      */
     protected void fillList(final android.app.Activity context, final ArrayList<Word> words, int colorResId) {
         setContentView(R.layout.word_list);
+
+        mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
 
         WordAdapter itemsAdapter = new WordAdapter(context, words, colorResId);
 
@@ -53,12 +84,22 @@ public class VocabularyActivity extends AppCompatActivity {
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         releaseMediaPlayer();
                         mMediaPlayer = MediaPlayer.create(context, words.get(position).getSoundResourceId());
-                        mMediaPlayer.start();
-                        mMediaPlayer.setOnCompletionListener(mCompletionListener);
+                        int focus = mAudioManager.requestAudioFocus(audiatur, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
+                        if (AudioManager.AUDIOFOCUS_REQUEST_GRANTED == focus) {
+                            startAudio();
+                        }
                     }
-                });
+                }
+        );
     }
 
+    /**
+     * start playing audio
+     */
+    private void startAudio() {
+        mMediaPlayer.start();
+        mMediaPlayer.setOnCompletionListener(mCompletionListener);
+    }
     /**
      * Clean up the media player by releasing its resources.
      */
