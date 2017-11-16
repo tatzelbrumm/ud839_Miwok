@@ -25,6 +25,7 @@ public class VocabularyActivity extends AppCompatActivity {
         @Override
         public void onCompletion(MediaPlayer mp) {
             releaseMediaPlayer();
+            mAudioManager.abandonAudioFocus(audiatur);
         }
     };
 
