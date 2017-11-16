@@ -55,7 +55,7 @@ public class WordAdapter extends ArrayAdapter<Word> {
         }
         // set the background color of the text field
         int color = ContextCompat.getColor(getContext(), mColorResourceId);
-        listItemView.findViewById(R.id.wordpair).setBackgroundColor(color);
+        listItemView.findViewById(R.id.item).setBackgroundColor(color);
         // Get the Word to display and fill the Views in the listItemView
         Word wordUp = getItem(position);
         ((TextView) listItemView.findViewById(R.id.line_1)).setText(wordUp.getMiwok());
