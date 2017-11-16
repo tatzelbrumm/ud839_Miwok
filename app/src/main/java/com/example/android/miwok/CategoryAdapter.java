@@ -4,6 +4,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import static java.security.AccessController.getContext;
+
 
 /**
  * Created by cmaier on 16.11.17.
@@ -12,6 +14,12 @@ import android.support.v4.app.FragmentPagerAdapter;
  */
 
 public class CategoryAdapter extends FragmentPagerAdapter {
+    String[] titles = {
+            "numbers",
+            "family",
+            "colors",
+            "phrases"
+    };
 
     public CategoryAdapter(FragmentManager fm) {
         super(fm);
@@ -32,8 +40,22 @@ public class CategoryAdapter extends FragmentPagerAdapter {
         }
     }
 
+    /**
+     * This method may be called by the ViewPager to obtain a title string
+     * to describe the specified page. This method may return null
+     * indicating no title for this page. The default implementation returns
+     * null.
+     *
+     * @param position The position of the title requested
+     * @return A title for the requested page
+     */
+    @Override
+    public CharSequence getPageTitle(int position) {
+        return titles[position];
+    }
+
     @Override
     public int getCount() {
-        return 4;
+        return titles.length;
     }
 }
