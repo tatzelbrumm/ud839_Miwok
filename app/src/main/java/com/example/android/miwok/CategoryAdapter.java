@@ -1,5 +1,6 @@
 package com.example.android.miwok;
 
+import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -14,15 +15,17 @@ import static java.security.AccessController.getContext;
  */
 
 public class CategoryAdapter extends FragmentPagerAdapter {
-    String[] titles = {
-            "numbers",
-            "family",
-            "colors",
-            "phrases"
+    private Context mContext;
+    private int[] titles = {
+            R.string.category_numbers,
+            R.string.category_family,
+            R.string.category_colors,
+            R.string.category_phrases
     };
 
-    public CategoryAdapter(FragmentManager fm) {
+    public CategoryAdapter(Context context, FragmentManager fm) {
         super(fm);
+        mContext = context;
     }
 
     @Override
@@ -51,7 +54,7 @@ public class CategoryAdapter extends FragmentPagerAdapter {
      */
     @Override
     public CharSequence getPageTitle(int position) {
-        return titles[position];
+        return mContext.getString(titles[position]);
     }
 
     @Override
